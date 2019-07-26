@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block page_title %}
+    Manage Article
+{% endblock page_title %}
+
+
+{% block contents %}
+    <h1>Manage Article</h1>
+    <div  style="float : right; padding-bottom : 20px;" >
+          <a class="btn btn-primary" href="{%url 'article:create' %}">Create</a>
+    </div>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Category</th>
+            <th scope="col">Published</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            
+            {% for article in articles  %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{article.title}}</td>
+                <td>{{article.category.name}}</td>
+                <td>{{article.published}}</td>
+                <td>
+                    <a class="btn btn-warning" href="{%url 'article:update' article.id%}">Edit</a>
+                    <a  class="btn btn-danger" href="{%url 'article:delete' article.id%}">Delete</a>
+                </td>
+              </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+{% endblock contents %}
+    

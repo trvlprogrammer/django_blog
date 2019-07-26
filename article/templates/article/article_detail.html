@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block page_title %}
+    {{article.title}}
+{% endblock page_title %}
+    
+
+{% block contents %}
+<div class="row">
+	<div class="col-md-8">
+		<h1>{{article.title}}</h1>
+		<h5>Category : {{article.category}} | {{article.published}}</h5>
+		<p>{{article.body}}</p>	
+	</div>
+	<div class="col-sm">
+		<h3>Category</h3>
+		<ul class="list-group">
+				<li class="list-group-item"><a href="{% url 'article:list' 1%}">All Categorys</a></li>    
+			{% for category in categorys  %}
+			<li class="list-group-item"><a href="{% url 'article:category' category.name 1%}">{{category.name}}</a></li>    
+			{% endfor %}
+				
+			
+		</ul>
+		<h3>The Same Articles</h3>
+
+		<ul class="list-group">
+			
+			{% for article in same_article  %}
+			<li class="list-group-item"><a href="{% url 'article:detail' article.slug%}">{{article.title}}</a></li>    
+			{% endfor %}
+				
+			
+		</ul>
+
+	</div>
+</div>
+{% endblock contents %}
+    
